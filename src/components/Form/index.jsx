@@ -11,10 +11,19 @@ export default function FormImg() {
     const [imc, setImc] = useState(null);
     const [messageResultImc, setMessageResult] = useState("Preencha o peso e altura");
     const [buttonText, setButtontext] = useState('CALCULAR');
+    const [ errorMessage, setErrorMessage] = useState(null)
    
     function imcCalculator() {  
         return setImc((weight /(height * height)).toFixed(2));  
 
+    }
+
+    function verificationIfInputIsNull(){
+        if(imc == null){
+            
+            setErrorMessage("Campo Obrigatório*")
+           
+        }
     }
 
     function ShowImc(){
@@ -24,11 +33,13 @@ export default function FormImg() {
             setButtontext('CALCULAR NOVAMENTE');
             setWeight(null);
             setHeight(null);
+            setErrorMessage(null)
             return;
         }
         setButtontext('Calcular');
         setImc(null);
         setMessageResult('Preencha o peso e altura');
+        verificationIfInputIsNull()
        
     }
 
@@ -42,18 +53,21 @@ export default function FormImg() {
                 placeholder='Ex. 1.75'
                 keyboardType='numeric'
                 onChangeText={setHeight}
-                value={height}
+                
                 style={style.input}
+                
                 />
+                <Text style={style.errorMessage}>{errorMessage}</Text>
 
                 <Text style={style.labelInput}>Peso</Text>
                 <TextInput
                 placeholder='Ex. 75.500'
                 keyboardType='numeric'
                 onChangeText={setWeight}
-                value={weight}
+                
                 style={style.input}
                 />
+                <Text style={style.errorMessage}>{errorMessage}</Text>
 
                <TouchableOpacity style={style.buttonStyle} onPress={ShowImc}>
                 <Text style={style.textButton}>{buttonText}</Text>

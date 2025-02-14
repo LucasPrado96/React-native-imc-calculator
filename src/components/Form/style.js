@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         color: '#f5f5f5',
     },
+    errorMessage:{
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: "#f0053c",
+    }
     
 
 })
