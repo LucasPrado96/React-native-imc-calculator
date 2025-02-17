@@ -40,6 +40,8 @@ const styles = StyleSheet.create({
         height: 40, 
         backgroundColor: '#c0c9d1',
         padding: 8,
+        placeholderTextColor: '#919191',
+        
     },
 
     buttonStyle:{
