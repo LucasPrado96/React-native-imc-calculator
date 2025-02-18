@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         
-        borderTopRightRadius: 10,
-        borderTopLeftRadius: 10,
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
         elevation: 20,
         
     },

@@ -10,19 +10,16 @@ export default function ResultImc(props) {
 
   return (
     <View style={styles.viewContainer}>
-      {
-     props.ImcResult &&  props.ImcResult.length !== '' ?
-        <View style={styles.boxButton}>
-          <TouchableOpacity onPress={onShare} style={styles.button}>
-            <Text style={styles.textButtonShare}>Share</Text>
-          </TouchableOpacity>
-        </View>
-         :
-        <View/>
-      }
+      <View style={styles.boxButton}>
 
-      <Text style={styles.textButton}>{props.MessageResult}</Text>
-      <Text style={styles.imc}>{props.ImcResult}</Text>
+        <Text style={styles.textButton}>{props.MessageResult}</Text>
+        <Text style={styles.imc}>{props.ImcResult}</Text>
+
+        <TouchableOpacity onPress={onShare} style={styles.button}>
+          <Text style={styles.textButtonShare}>Compartilhar</Text>
+        </TouchableOpacity>
+        
+      </View>
     </View>
   );
 }

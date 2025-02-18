@@ -9,18 +9,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textButton:{
-        fontSize: 15,
+        fontSize: 25,
         fontWeight: 700,
         color: 'black',
     },
     imc: {
-        fontSize: 25,
+        fontSize: 35,
         fontWeight: 800,
         color: 'black',
     }, 
     boxButton:{
         display: 'flex',
-        
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '100%',
         marginBottom: 20,
     },
@@ -31,10 +32,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5,
         padding: 10,
-        paddingHorizontal: 50,
+        paddingHorizontal: 40,
     },
     textButtonShare:{
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: 800,
         color: '#fff'
     },
