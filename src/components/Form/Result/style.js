@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 50,
     },
     textButton:{
         fontSize: 25,

@@ -4,8 +4,15 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
-  Pressable,
+  Vibration
+ 
 } from "react-native";
+
+import Animated, { 
+  useSharedValue, 
+  useAnimatedStyle, 
+  withSpring 
+} from 'react-native-reanimated';
 
 import { useState } from "react";
 import ResultImc from "./Result";
@@ -21,6 +28,10 @@ export default function FormImg() {
   const [buttonText, setButtontext] = useState("CALCULAR");
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const shake = useSharedValue(0)
+
+
+
   function imcCalculator() {
     let heightFormated = height.replace(",", ".");
     let weightFormated = weight.replace(",", ".");
@@ -29,9 +40,22 @@ export default function FormImg() {
     );
   }
 
+  const shakeAnimation = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {translateX: withSpring(shake.value, {stiffness: 800, damping: 10})}
+      ],
+    }
+  })
+
   function verificationIfInputIsNull() {
     if (imc == "") {
       setErrorMessage("Campo Obrigatório*");
+      shake.value = 2
+      setTimeout(() => {
+        shake.value = -2;
+      }, 50);
+      Vibration.vibrate(200)
     }
   }
 
@@ -54,7 +78,7 @@ export default function FormImg() {
   return (
     <View style={[style.background, style.boxshadow]}>
         { imc == '' ? 
-        <Pressable style={style.boxForm}>
+        <Animated.View Keyboard={Keyboard.dismiss} style={[style.boxForm, shakeAnimation]}>
         <Text style={style.labelInput}>Altura</Text>
         <TextInput
           placeholder="Ex. 1.75"
@@ -78,7 +102,7 @@ export default function FormImg() {
         <TouchableOpacity style={style.buttonStyle} onPress={ShowImc}>
           <Text style={style.textButton}>{buttonText}</Text>
         </TouchableOpacity>
-      </Pressable> 
+      </Animated.View> 
       : 
       <View style={[style.background, style.boxshadow]}>
 
@@ -88,10 +112,8 @@ export default function FormImg() {
         <Text style={style.textButton}>{buttonText}</Text>
       </TouchableOpacity>
       
-    </View>
-     
-      
-      }
+      </View> }
+
     </View>
   );
 }
